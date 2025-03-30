@@ -9,3 +9,5 @@ export function ToolsWindow({ onClose }) {
     </Box>
   );
 }
+
+export default ToolsWindow;

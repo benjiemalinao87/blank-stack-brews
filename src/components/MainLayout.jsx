@@ -16,6 +16,7 @@ import PhoneWindow from './windows/PhoneWindow';
 import BroadcastManager from './broadcast/BroadcastManager';
 import Broadcast2 from './broadcast2/Broadcast2';
 import { SettingsWindow } from './windows/SettingsWindow';
+import { AutomationWindow } from './windows/AutomationWindow';
 import NotificationCenter from './notification-center/NotificationCenter';
 
 const MainLayout = () => {
@@ -123,7 +124,19 @@ const MainLayout = () => {
             defaultSize={{ width: 1200, height: 700 }}
             minSize={{ width: 900, height: 600 }}
           >
-            <ToolsWindow />
+            <ToolsWindow onClose={() => handleWindowClose('tools')} />
+          </DraggableWindow>
+        );
+      case 'automation':
+        return (
+          <DraggableWindow
+            key="automation"
+            title="Automation"
+            onClose={() => handleWindowClose('automation')}
+            defaultSize={{ width: 1200, height: 700 }}
+            minSize={{ width: 900, height: 600 }}
+          >
+            <AutomationWindow onClose={() => handleWindowClose('automation')} />
           </DraggableWindow>
         );
       case 'phone':
@@ -190,4 +203,4 @@ const MainLayout = () => {
   );
 };
 
-export default MainLayout; 
+export default MainLayout;

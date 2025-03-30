@@ -2,12 +2,18 @@
 import React from "react";
 import { Box } from "@chakra-ui/react";
 import PhoneWindow from "./PhoneWindow";
+import { AutomationWindow } from "./AutomationWindow";
+import { ToolsWindow } from "./ToolsWindow";
 
 export const WindowManager = ({ activeWindow, onClose }) => {
   const getWindowContent = () => {
     switch (activeWindow) {
       case "phone":
         return <PhoneWindow onClose={onClose} />;
+      case "automation":
+        return <AutomationWindow onClose={onClose} />;
+      case "tools":
+        return <ToolsWindow onClose={onClose} />;
       default:
         return null;
     }
@@ -41,3 +47,5 @@ export const WindowManager = ({ activeWindow, onClose }) => {
     </Box>
   );
 };
+
+export default WindowManager;

@@ -1,6 +1,7 @@
+
 import React, { useState } from 'react';
 import { HStack, Box, IconButton, Tooltip, useColorModeValue } from '@chakra-ui/react';
-import { MessageCircle, Users, GitBranch, Calendar, Phone, Wrench, Settings, Trophy, BarChart2, Layout, Share2, ChevronUp, ChevronDown, Megaphone, Mail } from 'lucide-react';
+import { MessageCircle, Users, GitBranch, Calendar, Phone, Wrench, Settings, Trophy, BarChart2, Layout, Share2, ChevronUp, ChevronDown, Megaphone, Mail, Zap } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ProfileIcon from '../profile/ProfileIcon';
 import { FiBook } from 'react-icons/fi';
@@ -147,6 +148,12 @@ export const Dock = ({ onItemClick, activeItem = [] }) => {
                   label="Tools"
                   onClick={() => onItemClick('tools')}
                   isActive={activeItem.includes('tools')}
+                />
+                <DockIcon
+                  icon={Zap}
+                  label="Automation"
+                  onClick={() => onItemClick('automation')}
+                  isActive={activeItem.includes('automation')}
                 />
                 <DockIcon
                   icon={Megaphone}
