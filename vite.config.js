@@ -11,7 +11,9 @@ export default defineConfig(({ mode }) => ({
     port: 8080,
   },
   plugins: [
-    react(),
+    react({
+      include: '**/*.{jsx,js}', // Ensure .js files are treated as JSX
+    }),
     mode === 'development' &&
     componentTagger(),
   ].filter(Boolean),

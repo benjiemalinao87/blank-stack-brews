@@ -1,4 +1,5 @@
 
+import React from 'react';
 import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index.js";
@@ -21,16 +22,18 @@ const theme = extendTheme({
   },
 });
 
-const App = () => (
-  <ChakraProvider theme={theme}>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Index />} />
-        {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </BrowserRouter>
-  </ChakraProvider>
-);
+const App = () => {
+  return (
+    <ChakraProvider theme={theme}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Index />} />
+          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </ChakraProvider>
+  );
+};
 
 export default App;
