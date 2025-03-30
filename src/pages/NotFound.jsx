@@ -1,4 +1,5 @@
 
+import React from 'react';
 import { Box, Button, Container, Heading, Text, VStack } from '@chakra-ui/react';
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";

@@ -1,4 +1,5 @@
 
+import React from 'react';
 import { Box, Container, Heading, Text, VStack } from '@chakra-ui/react';
 
 const Index = () => {
