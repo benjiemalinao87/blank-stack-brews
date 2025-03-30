@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Box } from '@chakra-ui/react';
 import DockContainer from './dock/DockContainer';
@@ -17,7 +18,6 @@ import BroadcastManager from './broadcast/BroadcastManager';
 import Broadcast2 from './broadcast2/Broadcast2';
 import { SettingsWindow } from './windows/SettingsWindow';
 import { AutomationWindow } from './windows/AutomationWindow';
-import NotificationCenter from './notification-center/NotificationCenter';
 
 const MainLayout = () => {
   const [activeWindows, setActiveWindows] = useState([]);
@@ -199,6 +199,21 @@ const MainLayout = () => {
       
       {/* Dock */}
       <DockContainer onItemClick={handleDockItemClick} activeItem={activeWindows} />
+
+      {/* Add a visible element to debug blank screen */}
+      <Box 
+        position="absolute" 
+        top="50%" 
+        left="50%" 
+        transform="translate(-50%, -50%)" 
+        bg="blue.500" 
+        color="white" 
+        p={4} 
+        borderRadius="md"
+        display={activeWindows.length === 0 ? "block" : "none"}
+      >
+        Click on an icon in the dock to open a window
+      </Box>
     </Box>
   );
 };

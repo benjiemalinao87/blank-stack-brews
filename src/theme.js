@@ -1,27 +1,25 @@
+
 import { extendTheme } from '@chakra-ui/react';
 
 const config = {
   initialColorMode: 'light',
-  useSystemColorMode: true,
+  useSystemColorMode: false,
 };
 
-const theme = extendTheme({
+const theme = extendTheme({ 
   config,
+  fonts: {
+    heading: 'SF Pro Display, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, sans-serif',
+    body: 'SF Pro Text, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, sans-serif',
+  },
   styles: {
-    global: (props) => ({
+    global: {
       body: {
-        bg: props.colorMode === 'dark' ? 'gray.800' : 'white',
-        color: props.colorMode === 'dark' ? 'white' : 'gray.800',
-      },
-    }),
-  },
-  components: {
-    Button: {
-      defaultProps: {
-        colorScheme: 'blue',
-      },
-    },
-  },
+        bg: 'gray.50',
+        color: 'gray.800',
+      }
+    }
+  }
 });
 
 export default theme;
