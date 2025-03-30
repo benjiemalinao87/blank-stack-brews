@@ -1,12 +1,12 @@
 
 import React from 'react';
-import { ChakraProvider, extendTheme } from '@chakra-ui/react';
+import { ChakraProvider } from '@chakra-ui/react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index.jsx";
 import NotFound from "./pages/NotFound.jsx";
 
-// Extend the theme to include custom colors, fonts, etc
-const theme = extendTheme({
+// Create a custom theme object directly
+const theme = {
   colors: {
     brand: {
       50: '#e6f7ff',
@@ -20,7 +20,7 @@ const theme = extendTheme({
     heading: 'Inter, system-ui, sans-serif',
     body: 'Inter, system-ui, sans-serif',
   },
-});
+};
 
 const App = () => {
   return (
