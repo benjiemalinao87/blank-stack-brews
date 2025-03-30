@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" style="color-scheme: light;">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="LiveChat Application"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <script src="%PUBLIC_URL%/config.js"></script>
+    <title>LiveChat App</title>
+    <style>
+      html, body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+      }
+      body {
+        background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb') !important;
+        background-size: cover !important;
+        background-position: center !important;
+        background-repeat: no-repeat !important;
+        background-attachment: fixed !important;
+        position: relative;
+      }
+      body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(1px);
+        z-index: 0;
+        pointer-events: none;
+      }
+      #root {
+        position: relative;
+        z-index: 1;
+        min-height: 100vh;
+      }
+    </style>
+  </head>
+  <body class="chakra-ui-light">
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+  </body>
+</html>

@@ -1,0 +1,15 @@
+Email Config: Use Resend default testing domain
+
+Key details and improvements:
+- Changed email sender to Resend default domain (onboarding@resend.dev)
+- Fixed domain verification issues in email sending
+- Used default testing domain for demonstration
+- Ensured consistent sender information in email_activities records
+- Updated reply-to address for better response handling
+
+Lessons Learned:
+- Resend requires domain verification before using custom domains
+- Default testing domain (onboarding@resend.dev) works without verification
+- Always test with default domain before custom domain setup
+- Keep email configuration stored consistently across systems
+- Use proper error handling to detect domain verification issues

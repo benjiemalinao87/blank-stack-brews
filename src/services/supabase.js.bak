@@ -1,0 +1,182 @@
+import { createClient } from '@supabase/supabase-js';
+
+const supabaseUrl = process.env.REACT_APP_SUPABASE_URL;
+const supabaseAnonKey = process.env.REACT_APP_SUPABASE_ANON_KEY;
+
+if (!supabaseUrl || !supabaseAnonKey) {
+  throw new Error('Missing Supabase configuration');
+}
+
+export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+  auth: {
+    persistSession: true,
+    autoRefreshToken: true,
+    detectSessionInUrl: true
+  }
+});
+
+export const isSupabaseConnected = async () => {
+  try {
+    const { data, error } = await supabase
+      .from('messages')
+      .select('id')
+      .limit(1);
+    
+    return !error;
+  } catch (err) {
+    return false;
+  }
+};
+
+export const formatPhoneNumber = (phone) => {
+  if (!phone) return '';
+  const cleaned = phone.replace(/\D/g, '');
+  return `+${cleaned}`;
+};
+
+export const signInWithEmail = async (email, password) => {
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email,
+    password,
+  });
+  if (error) throw error;
+
+  const { data: workspace, error: workspaceError } = await supabase
+    .from('workspaces')
+    .select('*')
+    .eq('id', '86509')
+    .single();
+
+  if (!workspace) {
+    const { error: createError } = await supabase
+      .from('workspaces')
+      .insert([
+        {
+          id: '86509',
+          name: 'qqfake15\'s Workspace'
+        }
+      ]);
+    if (createError) throw createError;
+  }
+
+  const { error: memberError } = await supabase
+    .from('workspace_members')
+    .insert([
+      {
+        workspace_id: '86509',
+        user_id: data.user.id,
+        role: 'admin'
+      }
+    ])
+    .select()
+    .single();
+
+  if (memberError && !memberError.message.includes('duplicate key')) {
+    throw memberError;
+  }
+
+  return data;
+};
+
+export const signUpWithEmail = async (email, password) => {
+  try {
+    const { data, error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        emailRedirectTo: `${getBaseUrl()}/auth/callback`,
+        data: {
+          onboarding_complete: false,
+          signup_date: new Date().toISOString()
+        }
+      }
+    });
+    
+    if (error) throw error;
+
+    if (data?.user) {
+      return { user: data.user };
+    }
+    
+    return { user: null };
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const signOut = async () => {
+  try {
+    const { error } = await supabase.auth.signOut();
+    if (error) throw error;
+    
+    return { success: true };
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getCurrentUser = async () => {
+  try {
+    const { data: { user }, error } = await supabase.auth.getUser();
+    if (error) throw error;
+    return user;
+  } catch (error) {
+    return null;
+  }
+};
+
+export const handleAuthCallback = async () => {
+  try {
+    const { data: { user }, error: authError } = await supabase.auth.getUser();
+    if (authError) throw authError;
+    if (!user) throw new Error('No user found');
+
+    const { data: workspace, error: workspaceError } = await supabase
+      .from('workspaces')
+      .select('*')
+      .eq('workspace_members.user_id', user.id)
+      .single();
+
+    if (workspaceError || !workspace) {
+      const { data: newWorkspace, error: createError } = await supabase
+        .from('workspaces')
+        .insert([{ name: 'My Workspace' }])
+        .select()
+        .single();
+
+      if (createError) throw createError;
+
+      const { error: memberError } = await supabase
+        .from('workspace_members')
+        .insert([{
+          workspace_id: newWorkspace.id,
+          user_id: user.id,
+          role: 'admin'
+        }]);
+
+      if (memberError) throw memberError;
+    }
+
+    return { success: true };
+  } catch (error) {
+    return { success: false, error };
+  }
+};
+
+export const onAuthStateChange = (callback) => {
+  try {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(callback);
+    return subscription;
+  } catch (error) {
+    return null;
+  }
+};
+
+export const getSupabaseStatus = () => {
+  return supabase.getChannels().length > 0 ? 'connected' : 'disconnected';
+};
+
+const getBaseUrl = () => {
+  const isProd = process.env.NODE_ENV === 'production';
+  return isProd ? 'https://cc1.automate8.com' : 'http://localhost:3000';
+};

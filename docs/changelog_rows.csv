@@ -1,0 +1,607 @@
+id,title,content,category,release_date,released_by,dev,lessons_learned,modified_date,created_at
+1,Version 2.0.0 Released,**Key Highlights:**\n\n- Completely redesigned UI for better user experience\n- Added dark mode support\n- Performance improvements across the board\n- Fixed several critical bugs,feature,2025-03-12 09:12:47.19949+00,Dev Team,Frontend Team,**Lessons Learned:**\n\n- Early user testing proved invaluable for UI decisions\n- Breaking the redesign into smaller PRs helped maintain code quality\n- Need to improve our testing infrastructure for future releases,,2025-03-14 09:12:47.19949+00
+2,Everything up-to-date,"**Major improvements in this release:**
+
+- Added dark mode support
+- Improved performance by 30%
+- Fixed critical bugs",feature,2023-08-15 12:00:00+00,Release Team,Dev Team Alpha,"**Lessons Learned:**
+
+- Cross-platform testing earlier would have helped",2025-03-14 09:53:56.852+00,2025-03-14 09:53:56.852+00
+3,Add Automated Changelog System,"Implemented automated changelog generation through webhook integration:
+- Created post-push script for automatic updates
+- Added Supabase webhook integration
+- Implemented smart commit parsing
+- Added team and category detection",feature,2025-03-14 10:10:18.069+00,Benjie Malinao,Development team,"**Lessons Learned:**
+
+- Git hooks provide powerful automation capabilities
+- Proper commit message formatting improves documentation
+- Structured data helps maintain consistent changelogs",2025-03-14 10:10:18.687+00,2025-03-14 10:10:18.687+00
+4,Update project configuration and reorganize documentation,,enhancement,2025-03-14 11:15:00.938+00,Benjie Malinao,Frontend team,,2025-03-14 11:15:01.33+00,2025-03-14 11:15:01.33+00
+5,Update project configuration and reorganize documentation,"Improved project organization by moving documentation files to appropriate directories.
+- Relocated CampaignBuilder.md to the frontend components directory
+- Added .gitmessage template for standardized commit messages
+- Updated package.json dependencies for better compatibility
+- Consolidated configuration files for easier maintenance",feature,2025-03-14 11:19:19.373+00,Benjie Malinao,Frontend team,"**Lessons Learned:**
+
+- Keeping documentation close to the relevant code improves developer experience
+- Standardized commit messages help with automated changelog generation
+- Regular package updates prevent security vulnerabilities",2025-03-14 11:19:19.983+00,2025-03-14 11:19:19.983+00
+6,Enhance changelog script with better validation and documentation,"Improved the post-push-changelog.js script to ensure it correctly captures all required information:
+- Added comprehensive documentation with format examples",feature,2025-03-14 11:22:03.212+00,Benjie Malinao,Development team,"**Lessons Learned:**
+
+- Added validation to check for missing fields
+- Enhanced error handling and logging
+- Added warnings when commit messages don't follow the required format
+- Lessons Learned:
+- Clear documentation in scripts helps maintain consistent workflows
+- Validation checks prevent incomplete data from being submitted
+- Proper error handling improves troubleshooting capabilities",2025-03-14 11:22:03.836+00,2025-03-14 11:22:03.836+00
+7,New Feature Release v2.5.0,"**Major improvements in this release:**
+
+- Added dark mode support across all platforms
+- Improved performance by 30% on mobile devices
+- Fixed issue with notifications not appearing on iOS
+
+**Minor updates:**
+- Updated dependencies to latest versions
+- Refreshed UI elements for better accessibility",feature,2025-03-14 11:24:57.666+00,Sarah Johnson,Dev Team Alpha,"**Lessons Learned:**
+
+- Cross-platform testing earlier in the cycle would have identified iOS issues sooner
+- Performance benchmarking helped us measure the actual impact of optimizations
+- User research was vital for creating an intuitive dark mode experience",2025-03-14 11:24:58.266+00,2025-03-14 11:24:58.266+00
+8,New Feature Release v2.5.0,"**Major improvements in this release:**
+
+- Added dark mode support across all platforms
+- Improved performance by 30% on mobile devices
+- Fixed issue with notifications not appearing on iOS
+
+**Minor updates:**
+- Updated dependencies to latest versions
+- Refreshed UI elements for better accessibility",feature,2025-03-14 11:25:11.778+00,Sarah Johnson,Dev Team Alpha,"**Lessons Learned:**
+
+- Cross-platform testing earlier in the cycle would have identified iOS issues sooner
+- Performance benchmarking helped us measure the actual impact of optimizations
+- User research was vital for creating an intuitive dark mode experience",2025-03-14 11:25:12.236+00,2025-03-14 11:25:12.236+00
+9,"Fix LiveChat outbound SMS issues with improved error handling, fallback endpoint strategy, better phone number formatting, and debugging tools",,bugfix,2025-03-14 18:25:34.737+00,Benjie Malinao,Frontend team,,2025-03-14 18:25:35.699+00,2025-03-14 18:25:35.699+00
+10,Fix LiveChat Outbound SMS Issues,Key details: - Enhanced error handling and logging in the message sending process - Implemented fallback endpoint strategy for message delivery - Improved phone number formatting for better compatibility - Added debugging tools to the UI for easier troubleshooting,bugfix,2025-03-14 18:27:39.014+00,Benjie Malinao,Frontend team,,2025-03-14 18:27:39.63+00,2025-03-14 18:27:39.63+00
+11,Fix LiveChat Outbound SMS Issues,"Key details and bullet points:
+- Enhanced error handling and logging in the message sending process
+- Implemented fallback endpoint strategy for message delivery
+- Improved phone number formatting for better compatibility
+- Added debugging tools to the UI for easier troubleshooting",bugfix,2025-03-14 18:29:53.789+00,Benjie Malinao,Frontend team,"**Lessons Learned:**
+
+- Always implement detailed logging throughout critical processes
+- Use fallback strategies for essential functionality like messaging
+- Properly parse and handle API responses, especially for error cases
+- Ensure consistent phone number formatting between frontend and backend
+- Add debugging tools to help diagnose issues in production",2025-03-14 18:29:54.218+00,2025-03-14 18:29:54.218+00
+12,Automate Changelog Process,"Key details and bullet points:
+- Added Git hooks for automatic changelog generation
+- Created pre-push hook to validate commit message format
+- Created post-commit hook to run changelog script
+- Added commit message template for proper formatting
+- Created setup script for easy team onboarding",bugfix,2025-03-14 18:34:33.081+00,Benjie Malinao,Development team,"**Lessons Learned:**
+
+- Proper phone number formatting is critical for Twilio SMS delivery
+- Comprehensive error handling and logging is essential for debugging message delivery issues
+- API endpoint verification and parameter validation should be performed before sending messages
+- Clear user feedback for message status helps identify delivery issues quickly
+- Fallback strategies are essential for critical functionality like messaging",2025-03-14 18:34:33.631+00,2025-03-14 18:34:33.631+00
+13,Fix LiveChat test endpoints and improve error handling,,bugfix,2025-03-14 18:49:28.657+00,Benjie Malinao,Frontend team,,2025-03-14 18:49:29.222+00,2025-03-14 18:49:29.223+00
+14,Fix LiveChat test endpoints and improve error handling,"Key details and bullet points:
+- Updated API endpoints to match current backend routes
+- Added robust error handling for all API calls
+- Improved response parsing to handle HTML error responses
+- Enhanced user feedback with detailed error messages",bugfix,2025-03-14 18:51:46.328+00,Benjie Malinao,Frontend team,"**Lessons Learned:**
+
+- Always validate API endpoints before deployment
+- Implement robust error handling for network requests
+- Parse API responses as text first before attempting JSON parsing
+- Provide detailed error feedback to users for troubleshooting",2025-03-14 18:51:46.906+00,2025-03-14 18:51:46.906+00
+15,Fix LiveChat message sending functionality,"Key details and bullet points:
+- Updated primary API endpoint to /api/messages in messageStore.js
+- Added workspaceId to primary endpoint payload
+- Improved error handling for JSON parsing errors
+- Ensured proper fallback to /send-sms endpoint when primary endpoint fails",bugfix,2025-03-14 19:00:02.239+00,Benjie Malinao,Frontend team,"**Lessons Learned:**
+
+- Always parse API responses as text first before attempting JSON parsing
+- Implement robust fallback mechanisms for critical functionality
+- Test API endpoints thoroughly before deploying to production
+- Provide detailed error logging to help diagnose API communication issues",2025-03-14 19:00:02.941+00,2025-03-14 19:00:02.942+00
+16,Fix: Replace MdMarkUnread with MdMarkEmailUnread icon,"Replace unavailable MdMarkUnread icon with MdMarkEmailUnread in ContactListItem component.
+This fixes the compilation error by using an available icon from react-icons/md package.
+The MdMarkEmailUnread icon serves the same purpose of indicating unread messages in the contact list.",bugfix,2025-03-14 19:17:35.513+00,Benjie Malinao,Frontend team,,2025-03-14 19:17:36.115+00,2025-03-14 19:17:36.116+00
+17,Fix: Replace MdMarkUnread with MdMarkEmailUnread icon,"Replace unavailable MdMarkUnread icon with MdMarkEmailUnread in ContactListItem component.
+Key details:
+- Changed import from MdMarkUnread to MdMarkEmailUnread
+- Updated references in the getStatusIndicator function
+- Fixed compilation error while maintaining the same visual indicator for unread messages",bugfix,2025-03-14 19:18:11.871+00,Benjie Malinao,Frontend team,"**Lessons Learned:**
+
+- Always verify that imported icons exist in the specified package before using them
+- Check the available exports in a package when encountering 'export not found' errors
+- Use similar alternative icons when the desired one is not available
+- Test UI components after making icon changes to ensure visual consistency",2025-03-14 19:18:12.212+00,2025-03-14 19:18:12.212+00
+18,Fix: Replace MdMarkUnread with MdMarkEmailUnread icon,"Replace unavailable MdMarkUnread icon with MdMarkEmailUnread in ContactListItem component.
+Key details and bullet points:
+- Changed import from MdMarkUnread to MdMarkEmailUnread
+- Updated references in the getStatusIndicator function
+- Fixed compilation error while maintaining the same visual indicator for unread messages",bugfix,2025-03-14 19:18:33.491+00,Benjie Malinao,Frontend team,"**Lessons Learned:**
+
+- Always verify that imported icons exist in the specified package before using them
+- Check the available exports in a package when encountering 'export not found' errors
+- Use similar alternative icons when the desired one is not available
+- Test UI components after making icon changes to ensure visual consistency",2025-03-14 19:18:33.772+00,2025-03-14 19:18:33.772+00
+19,fix: Update Twilio webhook configuration,"- Update webhook URL format to match cc.automate8.com/twilio/:workspaceId
+- Improve Twilio configuration save with webhook_url and webhook_type
+- Add contact creation for new incoming messages
+- Enhance error handling and logging
+- Update UI to display correct webhook URL format",bugfix,2025-03-15 05:38:46.009+00,Benjie Malinao,Full Stack team,,2025-03-15 05:38:46.645+00,2025-03-15 05:38:46.645+00
+20,Twilio Webhook Configuration Update,"Key Changes:
+- Update webhook URL format to match cc.automate8.com/twilio/:workspaceId
+- Improve Twilio configuration save with webhook_url and webhook_type
+- Add contact creation for new incoming messages
+- Enhance error handling and logging
+- Update UI to display correct webhook URL format",feature,2025-03-15 05:39:07.524+00,Benjie Malinao,Full Stack team,"**Lessons Learned:**
+
+- Always use absolute URLs for Twilio webhooks to ensure proper message routing
+- Store webhook configuration in database to maintain consistency across restarts
+- Implement proper validation and error handling for webhook requests
+- Follow E.164 format for phone numbers in Twilio communications",2025-03-15 05:39:07.85+00,2025-03-15 05:39:07.851+00
+21,fix: Update Twilio webhook configuration and save to workspace_twilio_config,,bugfix,2025-03-15 05:39:34.546+00,Benjie Malinao,Full Stack team,,2025-03-15 05:39:35.092+00,2025-03-15 05:39:35.092+00
+22,Twilio Webhook Configuration,"Changes:
+- Configure absolute webhook URLs using cc.automate8.com domain
+- Save webhook configuration to workspace_twilio_config table
+- Update UI to display correct webhook URL format
+- Add error handling and logging for webhook requests",feature,2025-03-15 05:39:52.389+00,Benjie Malinao,Full Stack team,"**Lessons Learned:**
+
+- Always use absolute URLs for webhooks
+- Store webhook configuration in database
+- Validate incoming webhook requests",2025-03-15 05:39:52.759+00,2025-03-15 05:39:52.759+00
+23,Title of Change,"Update Twilio Webhook Configuration and Database Storage
+Key details and bullet points:
+- Configure absolute webhook URLs using cc.automate8.com domain
+- Save webhook configuration to workspace_twilio_config table
+- Update UI to display correct webhook URL format
+- Add error handling and logging for webhook requests",feature,2025-03-15 05:40:22.848+00,Benjie Malinao,Full Stack team,"**Lessons Learned:**
+
+- Always use absolute URLs for webhooks to ensure proper message routing
+- Store webhook configuration in database for consistency across restarts
+- Validate incoming webhook requests for security",2025-03-15 05:40:23.149+00,2025-03-15 05:40:23.149+00
+24,fix: update twilio integration with proper phone number handling,"- Update twilio_numbers table schema with proper constraints
+- Add unique constraint on SID to prevent duplicates
+- Fix syncPhoneNumbers function to match database structure
+- Add migration for table updates",bugfix,2025-03-15 06:04:56.995+00,Benjie Malinao,Backend team,,2025-03-15 06:04:57.322+00,2025-03-15 06:04:57.322+00
+25,Twilio Integration Phone Number Handling,"Key Details:
+- Update twilio_numbers table schema with proper constraints
+- Add unique constraint on SID to prevent duplicates
+- Fix syncPhoneNumbers function to match database structure
+- Add migration for table updates",bugfix,2025-03-15 06:05:19.918+00,Benjie Malinao,Backend team,"**Lessons Learned:**
+
+- Always validate database schema constraints before implementing features
+- Keep table names consistent across codebase
+- Use proper error handling for Twilio API responses
+- Maintain clear logging for debugging webhook issues",2025-03-15 06:05:20.177+00,2025-03-15 06:05:20.177+00
+26,Title: Twilio Integration Phone Number Handling,"- Update twilio_numbers table schema with proper constraints
+- Add unique constraint on SID to prevent duplicates
+- Fix syncPhoneNumbers function to match database structure
+- Add migration for table updates",bugfix,2025-03-15 06:05:48.993+00,Benjie Malinao,Backend team,"**Lessons Learned:**
+
+- Always validate database schema constraints before implementing features
+- Keep table names consistent across codebase
+- Use proper error handling for Twilio API responses
+- Maintain clear logging for debugging webhook issues",2025-03-15 06:05:49.271+00,2025-03-15 06:05:49.271+00
+27,Twilio Phone Number Integration,"- Update twilio_numbers table schema with proper constraints
+- Add unique constraint on SID to prevent duplicates
+- Fix syncPhoneNumbers function to match database structure
+- Add migration for table updates",bugfix,2025-03-15 06:05:57.918+00,Benjie Malinao,Backend team,"**Lessons Learned:**
+
+- Always validate database schema constraints before implementing features
+- Keep table names consistent across codebase
+- Use proper error handling for Twilio API responses
+- Maintain clear logging for debugging webhook issues",2025-03-15 06:05:58.474+00,2025-03-15 06:05:58.474+00
+28,Title of Change: Twilio Phone Number Integration,"Key details and bullet points:
+- Update twilio_numbers table schema with proper constraints
+- Add unique constraint on SID to prevent duplicates
+- Fix syncPhoneNumbers function to match database structure
+- Add migration for table updates",bugfix,2025-03-15 06:06:27.725+00,Benjie Malinao,Backend team,"**Lessons Learned:**
+
+- Always validate database schema constraints before implementing features
+- Keep table names consistent across codebase
+- Use proper error handling for Twilio API responses
+- Maintain clear logging for debugging webhook issues",2025-03-15 06:06:27.995+00,2025-03-15 06:06:27.995+00
+29,Fix Twilio Phone Number Integration,"- Update twilio_numbers table schema with proper constraints
+- Add unique constraint on SID to prevent duplicates
+- Fix syncPhoneNumbers function to match database structure
+- Add migration for table updates",bugfix,2025-03-15 06:06:52.166+00,Benjie Malinao,Backend team,"**Lessons Learned:**
+
+- Always validate database schema constraints before implementing features
+- Keep table names consistent across codebase
+- Use proper error handling for Twilio API responses
+- Maintain clear logging for debugging webhook issues",2025-03-15 06:06:52.399+00,2025-03-15 06:06:52.399+00
+30,Title: Fix Twilio Phone Number Integration,"Key details and bullet points:
+- Update twilio_numbers table schema with proper constraints
+- Add unique constraint on SID to prevent duplicates
+- Fix syncPhoneNumbers function to match database structure
+- Add migration for table updates",bugfix,2025-03-15 06:07:02.708+00,Benjie Malinao,Backend team,"**Lessons Learned:**
+
+- Always validate database schema constraints before implementing features
+- Keep table names consistent across codebase
+- Use proper error handling for Twilio API responses
+- Maintain clear logging for debugging webhook issues",2025-03-15 06:07:02.994+00,2025-03-15 06:07:02.994+00
+31,Fix Twilio Phone Number Integration,"- Update twilio_numbers table schema with proper constraints
+- Add unique constraint on SID to prevent duplicates
+- Fix syncPhoneNumbers function to match database structure
+- Add migration for table updates",bugfix,2025-03-15 06:08:07.032+00,Benjie Malinao,Backend team,"**Lessons Learned:**
+
+- Always validate database schema constraints before implementing features
+- Keep table names consistent across codebase
+- Use proper error handling for Twilio API responses
+- Maintain clear logging for debugging webhook issues",2025-03-15 06:08:07.576+00,2025-03-15 06:08:07.576+00
+32,Title of Change,"Key details and bullet points
+- Update twilio_numbers table schema with proper constraints
+- Add unique constraint on SID to prevent duplicates
+- Fix syncPhoneNumbers function to match database structure
+- Add migration for table updates",bugfix,2025-03-15 06:08:30.318+00,Benjie Malinao,Backend team,"**Lessons Learned:**
+
+- Always validate database schema constraints before implementing features
+- Keep table names consistent across codebase
+- Use proper error handling for Twilio API responses
+- Maintain clear logging for debugging webhook issues",2025-03-15 06:08:30.605+00,2025-03-15 06:08:30.605+00
+33,Twilio Phone Number Integration and Database Schema Update,"Key details and bullet points
+- Update twilio_numbers table schema with proper constraints
+- Add unique constraint on SID to prevent duplicates
+- Fix syncPhoneNumbers function to match database structure
+- Add migration for table updates",bugfix,2025-03-15 06:08:42.119+00,Benjie Malinao,Backend team,"**Lessons Learned:**
+
+- Always validate database schema constraints before implementing features
+- Keep table names consistent across codebase
+- Use proper error handling for Twilio API responses
+- Maintain clear logging for debugging webhook issues",2025-03-15 06:08:42.42+00,2025-03-15 06:08:42.42+00
+34,Twilio Phone Number Integration and Database Schema Update,"Key details and bullet points:
+- Update twilio_numbers table schema with proper constraints
+- Add unique constraint on SID to prevent duplicates
+- Fix syncPhoneNumbers function to match database structure
+- Add migration for table updates",bugfix,2025-03-15 06:08:56.377+00,Benjie Malinao,Backend team,"**Lessons Learned:**
+
+- Always validate database schema constraints before implementing features
+- Keep table names consistent across codebase
+- Use proper error handling for Twilio API responses
+- Maintain clear logging for debugging webhook issues",2025-03-15 06:08:56.678+00,2025-03-15 06:08:56.678+00
+35,feat(twilio): add auth middleware and improve error handling,"- Add Supabase auth verification middleware
+- Add proper parameter validation
+- Improve error handling and response types
+- Add Authorization headers to all API requests
+- Clean up unnecessary logging",feature,2025-03-15 06:22:15.976+00,Benjie Malinao,Full Stack team,,2025-03-15 06:22:16.357+00,2025-03-15 06:22:16.357+00
+36,Twilio Integration Authentication and Error Handling,"Key Changes:
+- Added Supabase auth verification middleware to all Twilio endpoints
+- Added proper parameter validation for workspaceId and Twilio credentials
+- Improved error handling with specific error messages and HTTP status codes
+- Added Authorization headers to all frontend API requests
+- Cleaned up unnecessary logging to reduce overhead
+- Separated phone number purchase logic from sync logic",bugfix,2025-03-15 06:22:33.255+00,Benjie Malinao,Full Stack team,"**Lessons Learned:**
+
+- Always validate authentication tokens before processing API requests
+- Keep sensitive data like auth tokens secure and validate them properly
+- Use consistent error handling patterns across all endpoints
+- Remove debug logging in production to improve performance
+- Separate concerns for better code maintainability",2025-03-15 06:22:33.781+00,2025-03-15 06:22:33.781+00
+37,fix: improve Twilio phone number syncing and webhook configuration,"- Add GET endpoint for phone numbers that ensures Twilio sync
+- Update frontend to handle phone number syncing properly
+- Add proper database constraints and RLS policies
+- Improve error handling and user feedback
+- Fix webhook configuration verification",bugfix,2025-03-16 10:07:30.414+00,Benjie Malinao,Full Stack team,,2025-03-16 10:07:30.825+00,2025-03-16 10:07:30.826+00
+38,docs: add lessons learned from Twilio phone number syncing improvements,,feature,2025-03-16 10:08:45.301+00,Benjie Malinao,Development team,"**Lessons Learned:**
+
+- Key details:
+- Document database synchronization best practices
+- API design patterns for external service sync
+- Deployment and webhook configuration considerations
+- Multi-tenant security practices
+- Lessons Learned:
+- Always ensure proper sync between external services and database
+- Combine sync operations with GET requests for up-to-date data
+- Remember backend changes need Railway deployment
+- Enforce proper multi-tenant data access with RLS",2025-03-16 10:08:45.823+00,2025-03-16 10:08:45.823+00
+39,feat: add webhook configuration UI with radio buttons,"Key details:
+- Add radio buttons for webhook configuration
+- Support global and workspace-specific webhooks
+- Follow Mac OS design philosophy
+- Add clear descriptions and feedback",feature,2025-03-16 10:13:43.361+00,Benjie Malinao,Frontend team,"**Lessons Learned:**
+
+- Keep UI consistent with Mac OS design
+- Provide clear feedback for webhook updates
+- Use radio buttons for mutually exclusive options
+- Include descriptive text for better UX",2025-03-16 10:13:43.726+00,2025-03-16 10:13:43.726+00
+40,fix: correct webhook URLs in IntegrationSettings,"Key details:
+- Update webhook URLs to use /twilio instead of /api/twilio
+- Ensure consistency between UI and backend routes
+- Fix webhook configuration paths
+- Update display text for clarity",bugfix,2025-03-16 10:14:38.722+00,Benjie Malinao,Frontend team,"**Lessons Learned:**
+
+- Maintain consistent API paths across frontend and backend
+- Double-check endpoint paths in UI text
+- Keep webhook URLs aligned with backend routes
+- Document URL patterns for better maintainability",2025-03-16 10:14:39.07+00,2025-03-16 10:14:39.07+00
+41,feat: add phone number selection for webhook configuration,"Key details:
+- Add checkboxes for individual phone number selection
+- Update webhook configuration to handle selected numbers
+- Follow Mac OS design philosophy for selection UI
+- Add status indicator for selected numbers",feature,2025-03-16 10:18:50.567+00,Benjie Malinao,Frontend team,"**Lessons Learned:**
+
+- Allow granular control over webhook configuration
+- Use checkboxes for multi-select functionality
+- Keep UI clean and intuitive
+- Provide clear feedback on selection state",2025-03-16 10:18:50.941+00,2025-03-16 10:18:50.941+00
+42,fix: separate phone number purchase from webhook configuration,"Key details:
+- Remove automatic webhook configuration during purchase
+- Add clear success message about manual webhook setup
+- Maintain phone number sync with database
+- Follow separation of concerns principle",bugfix,2025-03-16 10:22:10.132+00,Benjie Malinao,Backend team,"**Lessons Learned:**
+
+- Keep purchase and configuration steps separate
+- Give users control over webhook setup
+- Provide clear next steps in success messages
+- Follow principle of least surprise",2025-03-16 10:22:10.489+00,2025-03-16 10:22:10.49+00
+43,fix: improve webhook configuration UX,"Key details:
+- Remove automatic webhook verification
+- Add explicit Configure Webhook button
+- Separate webhook type selection from configuration
+- Improve error handling and user feedback",bugfix,2025-03-16 10:26:13.715+00,Benjie Malinao,Frontend team,"**Lessons Learned:**
+
+- Avoid automatic configuration that can cause race conditions
+- Give users explicit control over webhook setup
+- Keep UI state changes and API calls separate
+- Follow Mac OS design philosophy for clear user actions",2025-03-16 10:26:14.087+00,2025-03-16 10:26:14.087+00
+44,fix: add configure-webhook endpoint for Twilio,"Key details:
+- Add POST /api/twilio/configure-webhook endpoint
+- Support global and workspace-specific webhook URLs
+- Update phone numbers with proper webhook configuration
+- Update database to track webhook type and URL",bugfix,2025-03-16 10:32:40.16+00,Benjie Malinao,Backend team,"**Lessons Learned:**
+
+- Always test API endpoints before UI integration
+- Keep webhook configuration separate from number purchase
+- Maintain clear logs for debugging webhook issues
+- Follow separation of concerns principle",2025-03-16 10:32:40.785+00,2025-03-16 10:32:40.785+00
+45,fix: improve webhook configuration UI,"Key details:
+- Fix webhook configuration request format
+- Add clear phone number selection UI
+- Disable Configure button when no numbers selected
+- Improve error handling and success messages
+- Simplify webhook type descriptions",bugfix,2025-03-16 10:34:44.854+00,Benjie Malinao,Frontend team,"**Lessons Learned:**
+
+- Keep UI state and API requests in sync
+- Provide clear feedback for user actions
+- Follow Mac OS design principles for clarity
+- Handle all API response cases properly",2025-03-16 10:34:45.439+00,2025-03-16 10:34:45.439+00
+46,fix: properly initialize webhook type from database,"Key details:
+- Set default webhook type to 'workspace' for better isolation
+- Load webhook_type from database configuration
+- Remove dependency on getTwilioConfig
+- Use direct Supabase query for config",bugfix,2025-03-16 10:39:07.06+00,Benjie Malinao,Frontend team,"**Lessons Learned:**
+
+- Always check database schema before implementing features
+- Keep workspace data isolated by default
+- Use direct database queries when possible
+- Follow principle of least privilege",2025-03-16 10:39:07.783+00,2025-03-16 10:39:07.783+00
+47,fix: automatically set webhook configuration in database,"Key details:
+- Save webhook_type and webhook_url when creating/updating Twilio config
+- Default to workspace-specific webhooks for better isolation
+- Remove redundant saveTwilioConfig call
+- Use direct Supabase upsert for atomic operation",bugfix,2025-03-16 10:42:55.498+00,Benjie Malinao,Frontend team,"**Lessons Learned:**
+
+- Keep database state in sync with API calls
+- Use atomic operations to prevent race conditions
+- Default to workspace isolation for better security
+- Reduce redundant API calls",2025-03-16 10:42:56.047+00,2025-03-16 10:42:56.048+00
+48,refactor: simplify Twilio configuration UI,"Key details:
+- Remove redundant Test Connection button
+- Simplify UI to follow Mac OS design philosophy
+- Remove testStatus state and related code
+- Show phone numbers section when numbers exist
+- Improve webhook configuration handling",enhancement,2025-03-16 10:51:42.983+00,Benjie Malinao,Frontend team,"**Lessons Learned:**
+
+- Keep UI minimal and focused on core actions
+- Remove redundant state and operations
+- Follow Mac OS design principles for clarity
+- Improve user experience with simpler workflow",2025-03-16 10:51:43.639+00,2025-03-16 10:51:43.64+00
+49,fix: ensure consistent table naming,"Key details:
+- Drop old workspace_phone_numbers table if exists
+- Create twilio_numbers table with correct schema
+- Add proper constraints and RLS policies
+- Create indexes for performance",bugfix,2025-03-16 10:53:02.933+00,Benjie Malinao,Backend team,"**Lessons Learned:**
+
+- Maintain consistent table naming across codebase
+- Follow multi-tenant security best practices
+- Use proper constraints and indexes
+- Document schema changes in migrations",2025-03-16 10:53:03.399+00,2025-03-16 10:53:03.399+00
+50,fix: improve phone number loading UX,"Key changes:
+- Remove irrelevant 'No matching phone numbers' error toast
+- Handle empty phone numbers gracefully without error
+- Simplify phone number loading logic
+- Follow Mac OS design philosophy for error handling",bugfix,2025-03-16 11:06:08.513+00,Benjie Malinao,Frontend team,"**Lessons Learned:**
+
+- Only show errors for actual failures
+- Keep UI feedback relevant and helpful
+- Handle empty states gracefully
+- Follow Mac OS design for clean error handling",2025-03-16 11:06:09.176+00,2025-03-16 11:06:09.176+00
+51,fix: show Twilio integration status,"Key changes:
+- Add isConfigured state to track integration status
+- Show success alert when Twilio is configured
+- Load and display configuration status on mount
+- Follow Mac OS design for status indicators
+- Load phone numbers when configured",bugfix,2025-03-16 11:12:25.6+00,Benjie Malinao,Frontend team,"**Lessons Learned:**
+
+- Keep UI state in sync with backend
+- Show clear status indicators
+- Follow Mac OS design principles
+- Handle configuration states properly",2025-03-16 11:12:26.299+00,2025-03-16 11:12:26.3+00
+52,fix(twilio): Improve phone number sync reliability,"- Ensure workspace_id is string type to match database schema
+- Add friendly_name fallback to phone number
+- Add detailed logging for better debugging
+- Return upserted data for verification
+- Add crypto import for UUID generation",bugfix,2025-03-16 13:08:13.713+00,Benjie Malinao,Backend team,,2025-03-16 13:08:13.991+00,2025-03-16 13:08:13.991+00
+53,fix(twilio): Improve phone number sync reliability,"Key Changes:
+- Ensure workspace_id is string type to match database schema
+- Add friendly_name fallback to phone number
+- Add detailed logging for better debugging
+- Return upserted data for verification
+- Add crypto import for UUID generation",bugfix,2025-03-16 13:08:51.296+00,Benjie Malinao,Backend team,"**Lessons Learned:**
+
+- Always verify database column types before syncing data
+- Use consistent data types (text vs uuid) across related tables
+- Add fallback values for optional fields to improve UX
+- Include detailed logging during complex operations
+- Return upserted data for verification and debugging",2025-03-16 13:08:51.569+00,2025-03-16 13:08:51.569+00
+54,Final Fixed: Complete Twilio Integration with Phone Number Sync,"Key Changes:
+- Fixed database schema to use text type consistently
+- Created twilio_numbers table with proper RLS policies
+- Implemented automatic phone number sync after config save
+- Added webhook configuration for each number
+- Improved error handling and validation
+- Followed Mac OS design patterns for UI
+Technical Improvements:
+- Ensure workspace_id is string type in database
+- Add compound key (workspace_id, phone_number)
+- Configure webhooks per workspace
+- Add detailed logging for debugging
+- Return upserted data for verification",bugfix,2025-03-16 13:15:03.746+00,Benjie Malinao,Backend team,"**Lessons Learned:**
+
+- Always verify database column types before syncing data
+- Use consistent data types across related tables
+- Add fallback values for optional fields to improve UX
+- Include detailed logging during complex operations
+- Follow Mac OS design philosophy for clear user feedback
+- Implement proper error handling at all levels",2025-03-16 13:15:05.037+00,2025-03-16 13:15:05.038+00
+55,docs: Add detailed Twilio integration fix documentation,"Key Changes:
+- Created comprehensive documentation of Twilio fixes
+- Detailed database schema changes and reasoning
+- Included code examples and best practices
+- Added testing process and maintenance notes
+- Documented UI/UX improvements",bugfix,2025-03-16 13:17:46.366+00,Benjie Malinao,Development team,"**Lessons Learned:**
+
+- Document complex fixes for future reference
+- Include SQL commands for database changes
+- Explain the reasoning behind technical decisions
+- Follow Mac OS design philosophy in documentation
+- Keep maintenance notes for ongoing support",2025-03-16 13:17:46.637+00,2025-03-16 13:17:46.637+00
+56,Fix Duplicate Message Saving in LiveChat,Fixed duplicate message saving issue in LiveChat by implementing messageId checks,bugfix,2024-03-17 00:00:00+00,AI Assistant,benjiemalinao87,"[""Socket events should include unique identifiers to prevent duplicate processing"",""Message saving should be centralized to either frontend or backend, not both"",""Proper deduplication checks are crucial for real-time messaging systems""]",2025-03-16 23:35:38.328+00,2025-03-16 23:35:38.329+00
+57,fix: improve message deduplication in socket events and message store,,bugfix,2025-03-16 23:41:36.925+00,Benjie Malinao,Full Stack team,,2025-03-16 23:41:37.076+00,2025-03-16 23:41:37.076+00
+58,Fix Message Deduplication in Socket Events,"Key details and improvements:
+- Prevented duplicate message saving in database
+- Modified socket event handling to emit single event type
+- Improved message tracking in frontend store
+- Added proper message ID tracking for deduplication",bugfix,2025-03-16 23:42:33.038+00,Benjie Malinao,Full Stack team,"**Lessons Learned:**
+
+- Socket events should be carefully managed to prevent duplicate processing
+- Message handling should be consistent between frontend and backend
+- Proper state tracking is crucial for real-time applications",2025-03-16 23:42:33.491+00,2025-03-16 23:42:33.491+00
+59,"UI Enhancement: Simplify Chat Header Controls - Removed debug/test buttons for cleaner UI - Added Mark as Follow-up button with bell icon - Implemented placeholder toast for upcoming feature - Maintained phone number selector - Improved header layout | Lessons: Keep UI focused on user features, Remove dev controls, Use consistent styling, Plan future features with clear feedback",,bugfix,2025-03-17 01:33:38.62+00,Benjie Malinao,Frontend team,,2025-03-17 01:33:38.736+00,2025-03-17 01:33:38.737+00
+60,UI Enhancement: Simplify Chat Header Controls,"Key details and improvements:
+- Removed debug/test buttons for cleaner UI
+- Added Mark as Follow-up button with bell icon
+- Implemented placeholder toast for upcoming feature
+- Maintained phone number selector functionality
+- Improved header layout and spacing",bugfix,2025-03-17 01:34:09.621+00,Benjie Malinao,Frontend team,"**Lessons Learned:**
+
+- Keep UI controls focused on user-facing features
+- Remove development/testing controls from production UI
+- Use consistent button styling and iconography
+- Plan for future features with clear user feedback",2025-03-17 01:34:09.676+00,2025-03-17 01:34:09.676+00
+61,"Enhancement: Simplify Status Categories\n\nKey details and improvements:\n- Simplified status categories to only include Lead Status\n- Set default status options to Lead, Contacted, and Duplicate\n- Removed unnecessary Appointment Status and Result categories\n- Updated both frontend workspace creation and database migration\n- Maintained color scheme consistency across statuses\n\nLessons Learned:\n- Keep status categories focused and minimal for better UX\n- Ensure consistent status creation between frontend and database\n- Use clear color coding for status visibility\n- Maintain rollback capability in workspace creation",,enhancement,2025-03-17 01:44:27.65+00,Benjie Malinao,Frontend team,,2025-03-17 01:44:27.725+00,2025-03-17 01:44:27.725+00
+62,"fix: Add Workspace Filtering to Status Options - Added workspace_id filtering to getStatusCategories and getStatusOptionsByCategory - Updated StatusContext to pass workspace ID to service functions - Fixed issue with status options showing from all workspaces - Added proper error handling for missing workspace IDs - Improved logging for status option fetching - Lessons Learned: Always filter by workspace_id when fetching workspace-specific data, Include proper error handling for missing workspace context, Use consistent logging to track data flow in status management, Ensure context providers properly handle workspace-specific state",,bugfix,2025-03-17 01:58:36.54+00,Benjie Malinao,Frontend team,,2025-03-17 01:58:36.915+00,2025-03-17 01:58:36.915+00
+63,fix: Add Workspace Filtering to Status Options,"Key details and improvements:
+- Added workspace_id filtering to getStatusCategories and getStatusOptionsByCategory
+- Updated StatusContext to pass workspace ID to service functions
+- Fixed issue with status options showing from all workspaces
+- Added proper error handling for missing workspace IDs
+- Improved logging for status option fetching",bugfix,2025-03-17 01:59:06.588+00,Benjie Malinao,Frontend team,"**Lessons Learned:**
+
+- Always filter by workspace_id when fetching workspace-specific data
+- Include proper error handling for missing workspace context
+- Use consistent logging to track data flow in status management
+- Ensure context providers properly handle workspace-specific state",2025-03-17 01:59:06.6+00,2025-03-17 01:59:06.6+00
+64,fix: Remove Status Options Refresh Toast,"Key details and improvements:
+- Removed unnecessary success toast notification for status options refresh
+- Kept error toast for proper error handling
+- Improved UI by reducing notification noise",bugfix,2025-03-17 02:01:53.451+00,Benjie Malinao,Frontend team,"**Lessons Learned:**
+
+- Only show toasts for critical user feedback
+- Keep success notifications minimal
+- Maintain error notifications for debugging
+- Focus on essential user feedback",2025-03-17 02:01:53.464+00,2025-03-17 02:01:53.464+00
+65,fix: Fix Board Column Assignment for Contacts,"Key details and improvements:
+- Added proper metadata handling for board_contacts table
+- Fixed column assignment when adding contacts to board
+- Added board refresh mechanism after contact addition
+- Improved logging for debugging column assignments",bugfix,2025-03-17 02:30:11.177+00,Benjie Malinao,Frontend team,"**Lessons Learned:**
+
+- Store column assignments in metadata field for flexibility
+- Use custom events for real-time board updates
+- Implement proper error handling for board operations
+- Verify column assignments through database queries",2025-03-17 02:30:11.164+00,2025-03-17 02:30:11.164+00
+66,Added contact board management fix to lessons learned,,bugfix,2025-03-17 04:25:37.78+00,Benjie Malinao,Development team,,2025-03-17 04:25:38.339+00,2025-03-17 04:25:38.34+00
+67,Contact Board Management Fix,"Key details and improvements:
+- Added unique constraint on contact_id in board_contacts table
+- Updated moveContactToBoard and addContactToBoard functions
+- Enhanced drag-and-drop handling for cross-board moves
+- Fixed board refresh issues
+- Implemented proper error handling and rollbacks",bugfix,2025-03-17 04:26:15.183+00,Benjie Malinao,Development team,"**Lessons Learned:**
+
+- Always enforce uniqueness at database level first
+- Clean existing data before adding constraints
+- Keep single source of truth for data relationships
+- Use optimistic updates in UI to prevent flickering
+- Implement proper error handling for all operations",2025-03-17 04:26:15.877+00,2025-03-17 04:26:15.878+00
+68,Real-time Board Updates Fix,"Key details and improvements:
+- Enhanced board refresh mechanism for cross-board contact moves
+- Added immediate state updates for both source and target boards
+- Implemented double refresh event dispatch for better sync
+- Added explicit fetchBoardContacts call for source board
+- Improved event listener to handle all board refresh events",bugfix,2025-03-17 04:35:12.095+00,Benjie Malinao,Frontend team,"**Lessons Learned:**
+
+- Always update both source and target states in cross-board operations
+- Use event system for real-time updates across components
+- Implement proper state synchronization between boards
+- Double-check data consistency after state updates
+- Consider all affected components when handling updates",2025-03-17 04:35:12.884+00,2025-03-17 04:35:12.884+00
+69,Update Contact Management System,"Key details and improvements:
+- Fixed contact deletion synchronization across all views
+- Implemented optimistic UI updates with rollback
+- Improved error handling and user feedback
+- Made Lead Status field required in contact creation
+- Added proper loading states for status options
+- Enhanced state management during deletion process",bugfix,2025-03-17 10:16:08.024+00,Benjie Malinao,Development team,"**Lessons Learned:**
+
+- Use optimistic updates for better UX while handling edge cases
+- Maintain consistent state across components using store
+- Handle loading and error states properly
+- Implement proper cleanup to prevent memory leaks
+- Follow proper component lifecycle for state updates",2025-03-17 10:16:08.423+00,2025-03-17 10:16:08.423+00
+70,Integrate ChatPopUp with Send Message Button,Key details and improvements: - Integrated existing ChatPopUp component with Send Message button in ContactsPageV2 - Added proper state management for chat window visibility and selected contact - Removed Coming Soon toast notification in favor of actual chat functionality - Ensured proper component mounting/unmounting with cleanup - Fixed React hooks ordering issue for better performance,bugfix,2025-03-17 10:31:14.763+00,Benjie Malinao,Frontend team,,2025-03-17 10:31:15.302+00,2025-03-17 10:31:15.302+00
+71,Integrate ChatPopUp with Send Message Button,- Integrated existing ChatPopUp component with Send Message button in ContactsPageV2 - Added proper state management for chat window visibility and selected contact - Removed Coming Soon toast notification in favor of actual chat functionality - Ensured proper component mounting/unmounting with cleanup - Fixed React hooks ordering issue for better performance,bugfix,2025-03-17 10:33:27.499+00,Benjie Malinao,Frontend team,,2025-03-17 10:33:27.804+00,2025-03-17 10:33:27.804+00
+72,Integrate ChatPopUp with Send Message Button,Key details and bullet points: - Integrated existing ChatPopUp component with Send Message button in ContactsPageV2 - Added proper state management for chat window visibility and selected contact - Removed Coming Soon toast notification in favor of actual chat functionality - Ensured proper component mounting/unmounting with cleanup - Fixed React hooks ordering issue for better performance,bugfix,2025-03-17 10:34:14.353+00,Benjie Malinao,Frontend team,,2025-03-17 10:34:14.638+00,2025-03-17 10:34:14.638+00
+73,Integrate ChatPopUp with Send Message Button,"Key details and bullet points
+- Integrated existing ChatPopUp component with Send Message button in ContactsPageV2
+- Added proper state management for chat window visibility and selected contact
+- Removed Coming Soon toast notification in favor of actual chat functionality
+- Ensured proper component mounting/unmounting with cleanup
+- Fixed React hooks ordering issue for better performance",bugfix,2025-03-17 10:34:55.798+00,Benjie Malinao,Frontend team,"**Lessons Learned:**
+
+- Always check React hooks rules when adding new state management
+- Reuse existing components instead of creating new ones when possible
+- Keep state management at the top level of components
+- Ensure proper cleanup when chat window closes",2025-03-17 10:34:56.303+00,2025-03-17 10:34:56.303+00
+74,Implement Call Simulation UI,"Key details and bullet points: - Added inline call controls with call duration timer - Implemented call status simulation (connecting, connected) - Added mute functionality with visual feedback - Disabled starting new calls when another is in progress - Improved UI with Mac OS design patterns - Added toast notifications for call events",feature,2025-03-17 10:41:59.773+00,Benjie Malinao,Frontend team,,2025-03-17 10:42:00.33+00,2025-03-17 10:42:00.331+00
+75,Implement Call Simulation UI,"Key details and bullet points:
+- Added inline call controls with call duration timer
+- Implemented call status simulation (connecting, connected)
+- Added mute functionality with visual feedback
+- Disabled starting new calls when another is in progress
+- Improved UI with Mac OS design patterns
+- Added toast notifications for call events",feature,2025-03-17 10:43:10.377+00,Benjie Malinao,Frontend team,"**Lessons Learned:**
+
+- Keep UI state management simple and focused
+- Use timer cleanup in useEffect to prevent memory leaks
+- Implement proper loading states for better UX
+- Follow Mac OS design patterns for consistent look and feel
+- Use toast notifications for important user feedback",2025-03-17 10:43:10.689+00,2025-03-17 10:43:10.69+00

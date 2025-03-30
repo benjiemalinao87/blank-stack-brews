@@ -1,0 +1,113 @@
+# Broadcast Feature UI Implementation (March 21, 2024)
+
+## Component Architecture
+1. **Modular Component Design**
+   - Breaking down complex UI interfaces into smaller, focused components improves maintainability
+   - Creating separate components for each step in the workflow improves code organization
+   - Using a manager component to orchestrate the workflow provides centralized control
+   - Maintaining file size under 200 lines makes components easier to understand and test
+
+2. **State Management**
+   - Centralizing shared state in the parent component creates a clean data flow
+   - Using local component state for UI-specific behavior reduces complexity
+   - Implementing controlled forms with proper state updates ensures data consistency
+   - Passing callback functions for state updates maintains proper data encapsulation
+
+## UI/UX Design Patterns
+1. **Multi-step Process**
+   - Clear step indicators with active/completed/disabled states improve user orientation
+   - Progressive disclosure of information reduces cognitive load
+   - Consistent button placement and behavior across steps creates familiarity
+   - Proper validation between steps prevents errors and improves user confidence
+
+2. **Styling Approach**
+   - Using styled-components with component-scoped CSS improves maintainability
+   - Consistent color schemes, spacing, and typography create visual cohesion
+   - Implementing responsive designs with media queries ensures cross-device usability
+   - Visual feedback (hover states, animations) enhances the interactive experience
+
+3. **Preview Functionality**
+   - Real-time message previews allow users to verify content before sending
+   - Device-specific previews (mobile for SMS, desktop for email) provide context
+   - Test message functionality reduces errors in production broadcasts
+   - Character counters for SMS prevent unexpected message splitting
+
+## Future Considerations
+1. **Backend Integration**
+   - API endpoints for audience selection, message sending, and tracking will be needed
+   - Database schema for storing broadcast campaigns and tracking metrics
+   - Queue service integration for scheduled messages and large broadcasts
+   - Analytics storage and processing for detailed performance metrics
+
+2. **Performance Optimizations**
+   - Lazy loading components for each step to improve initial load time
+   - Implementing virtual scrolling for large audience lists
+   - Caching preview data to reduce rendering operations
+   - Using memoization for expensive calculations in tracking metrics
+
+# UI Space Optimization in Broadcast Preview (March 21, 2024)
+
+## Layout Efficiency
+1. **Compact Design**
+   - Reduced excessive padding and margins to create a more compact UI
+   - Adjusted component sizes to better match actual content requirements
+   - Used side-by-side layout for preview and test form to utilize horizontal space
+   - Created proper responsive behavior for different screen sizes
+
+2. **Component Sizing**
+   - Reduced phone mockup size while maintaining visibility of content
+   - Adjusted font sizes for better hierarchy and space efficiency
+   - Created more proportional UI elements based on content importance
+   - Used relative sizing (calc and percentages) for better component relationships
+
+## Responsive Design Improvements
+1. **Breakpoint Handling**
+   - Implemented proper column layout changes at appropriate breakpoints
+   - Added center alignment for components when stack layout is triggered
+   - Maintained control sizes that work well in both layouts
+   - Ensured text remains readable at all screen sizes
+
+2. **Space Utilization**
+   - Used flexible layouts that adapt to available space
+   - Removed unnecessary whitespace while maintaining visual hierarchy
+   - Ensured proper content alignment in both desktop and mobile views
+   - Optimized container sizes to better fit actual content
+
+## Visual Hierarchy Maintenance
+1. **Typography Scale**
+   - Adjusted font sizes to create clear hierarchy while reducing space usage
+   - Used consistent size relationships across all text elements
+   - Ensured important headings remain visually prominent
+   - Applied subtle weight differences to reinforce hierarchy
+
+2. **Visual Balance**
+   - Created visually balanced layout between preview and controls
+   - Maintained proper spacing between related elements
+   - Used consistent border radii and shadow styles scaled to component size
+   - Preserved visual distinction between interactive and display elements
+
+These improvements create a more efficient UI that reduces unnecessary empty space while maintaining usability and visual appeal consistent with macOS design principles.
+
+# TinyMCE API Key Integration (March 21, 2024)
+
+## Environment Variables Management
+1. **API Key Security**
+   - Storing API keys in environment variables keeps them out of version control
+   - Using React's process.env.REACT_APP_* prefix makes them available to client code
+   - Adding fallback empty string prevents errors if variable is missing
+   - Centralizing the API key in one location makes updates easier
+
+2. **Editor Configuration**
+   - Adding apiKey prop to all Editor components ensures consistent authentication
+   - Using the same API key for all editor instances avoids duplicate configuration
+   - Maintaining separate content state handlers for each editor instance provides flexibility
+   - Uniform editor setup creates consistent user experience across components
+
+## External Services Integration
+1. **Third-party Libraries**
+   - TinyMCE provides rich text editing capabilities without building from scratch
+   - Using the official React wrapper ensures proper component integration
+   - Configuration options can be customized for different use cases while sharing the API key
+   - Fallback handling ensures the application won't break if service is unavailable
+
+These practices improve security, maintainability, and reliability when integrating third-party services into the application. 

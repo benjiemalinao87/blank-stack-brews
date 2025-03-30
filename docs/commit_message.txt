@@ -1,0 +1,14 @@
+Improved UI for recipient count in sequence builder
+
+Key details and improvements:
+- Optimized the recipient count display in the sequence builder
+- Removed duplicate recipient counts from the UI
+- Moved recipient count display to only show in Build Sequence tab
+- Enhanced user experience by reducing UI clutter
+
+Lessons Learned:
+- Avoid duplicating UI elements that serve the same purpose
+- Show contextual information only when relevant to the current step
+- Use conditional rendering to display UI elements based on context
+- Keep the UI clean by minimizing repetitive information
+- UX improvements should focus on context-relevant information

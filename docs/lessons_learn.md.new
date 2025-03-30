@@ -1,0 +1,370 @@
+# Technical Lessons Learned
+
+## Preventing Undefined trim() Errors in Campaign Builder (March 21, 2024)
+
+### Issue
+Users encountered a runtime error "Cannot read properties of undefined (reading 'trim')" when clicking the "Next" button in the Campaign Builder component.
+
+### Root Cause
+1. The handleNext function was directly calling trim() on node.message properties without checking if the message property was defined
+2. When message was undefined instead of an empty string, calling trim() resulted in the error
+3. The error occurred in three places: campaign name validation and node message validations
+
+### Solution
+1. Added optional chaining operators (?.) before calling trim():
+   - Changed `!campaign.name.trim()` to `!campaign.name?.trim()`
+   - Changed `!node.message.trim()` to `!node.message?.trim()`
+   - Changed `node.message.trim().length` to `node.message?.trim()?.length`
+
+2. This ensures the trim() method is only called if the property exists, preventing the error
+
+### Key Learnings
+1. Always use optional chaining when accessing potentially undefined properties
+2. Defensive programming is critical for user-facing components to prevent runtime errors
+3. When dealing with form validation, always assume fields might be undefined
+4. TypeScript would have caught this issue at compile time - consider adding type checking
+5. Perform null/undefined checks before calling methods on user input data
+
+### Future Improvements
+1. Add input validation and sanitization for all user inputs
+2. Consider using a validation library for consistent form validation
+3. Add unit tests to catch similar issues before deployment
+4. Add proper error boundaries around form components
+
+## Message Scheduler Testing and BullMQ Integration (March 19, 2024)
+
+### Issue
+Testing the messaging scheduler for sending SMS messages via BullMQ queues required careful environment configuration and proper queue setup.
+
+### Root Cause
+1. Environment variables needed to be correctly defined and loaded before imports
+2. BullMQ queue names have specific format requirements (cannot contain colon characters)
+3. Importing modules with side effects can lead to initialization errors
+
+### Solution
+1. Environment Configuration:
+   - Explicitly set environment variables before importing modules
+   - Use fallback values to ensure required variables are always defined
+   - Add clear logging to verify environment variables are loaded
+
+2. Queue Implementation:
+   - Format queue names properly to avoid BullMQ restrictions (use underscores instead of colons)
+   - Establish Redis connection with proper configuration
+   - Ensure connection is properly closed after testing
+
+3. Testing Approach:
+   - Create standalone test scripts for queue testing
+   - Implement proper error handling in test scripts
+   - Log job creation details for verification
+
+### Key Learnings
+1. BullMQ queue names cannot contain colon characters
+2. Environment variables must be loaded before importing modules with side effects
+3. Use explicit environment variables with fallbacks for more reliable testing
+4. Add detailed logging for troubleshooting connection issues
+5. Test Redis connectivity separately from job scheduling logic
+
+### Future Improvements
+1. Create a standardized testing framework for queue operations
+2. Implement queue monitoring and management UI
+3. Add support for retry strategies and dead letter queues
+
+## Contact Board Management Fix (March 21, 2024)
+
+### Issue
+Contacts were appearing on multiple boards simultaneously, causing confusion and data inconsistency.
+
+### Root Cause
+1. Missing unique constraint on contact_id in board_contacts table
+2. Frontend not properly handling contact moves between boards
+3. Duplicate entries possible in database
+
+### Solution
+1. Database Level:
+   - Added unique constraint on contact_id in board_contacts table
+   - Prevents any contact from existing on multiple boards
+   - Cleaned up existing duplicates
+
+2. Frontend Level:
+   - Updated moveContactToBoard and addContactToBoard functions to:
+     - Delete existing board entries before adding new ones
+     - Include proper metadata and timestamps
+     - Handle errors gracefully
+   - Enhanced drag-and-drop handling to:
+     - Check source and target boards
+     - Prevent duplicate moves
+     - Refresh both boards after moves
+
+### Key Learnings
+1. Always enforce uniqueness at database level first
+2. Clean existing data before adding constraints
+3. Implement proper error handling and rollbacks
+4. Keep single source of truth for data relationships
+5. Use optimistic updates in UI to prevent flickering
+
+### Future Improvements
+1. Add contact history tracking
+2. Implement bulk operation optimizations
+3. Consider archived status instead of deletion
+
+## Contact Filters Implementation (March 13, 2025)
+
+### Supabase Query Building
+1. **Filter Composition**
+   - Building complex queries with multiple filters requires careful composition
+   - Supabase query builder allows chaining filter conditions for complex queries
+   - Using `.eq()`, `.gte()`, `.lt()`, and `.contains()` operators for different filter types
+   - Proper ordering of filter operations ensures correct query execution
+
+2. **JSONB Field Filtering**
+   - Metadata stored as JSONB requires special query techniques
+   - The `.contains()` operator works well for exact JSONB field matching
+   - Nested JSONB queries need careful structure to avoid performance issues
+   - Consider indexing frequently filtered JSONB fields for better performance
+
+### State Management
+1. **Filter State Organization**
+   - Organizing filter state in a structured object improves maintainability
+   - Separating local component state from global state prevents unnecessary renders
+   - Using a single filter update function simplifies state management
+   - Resetting pagination when filters change ensures consistent data loading
+
+2. **Date Range Handling**
+   - Date ranges require special handling for inclusive filtering
+   - Converting date strings to proper ISO format ensures consistency
+   - Adding one day to end dates for inclusive ranges improves user experience
+   - Providing clear date format guidance helps users enter correct values
+
+### UI Component Design
+1. **Filter Component Architecture**
+   - Using a popover interface keeps the UI clean while providing rich filtering
+   - Displaying active filters as badges improves visibility and usability
+   - Providing both individual filter removal and clear all options enhances UX
+   - Maintaining consistent styling with Mac OS design principles creates cohesion
+
+2. **Form Controls**
+   - Using appropriate form controls for different filter types improves usability
+   - Implementing custom date range picker component enhances date filtering
+   - Adding clear visual hierarchy helps users understand filter relationships
+   - Providing immediate feedback when filters are applied improves confidence
+
+### Performance Considerations
+1. **Query Optimization**
+   - Only applying non-empty filters reduces unnecessary database work
+   - Implementing proper debouncing prevents excessive API calls
+   - Using cursor-based pagination with filters maintains performance
+   - Caching filtered results improves perceived performance
+
+2. **UI Responsiveness**
+   - Showing loading indicators during filter operations improves UX
+   - Implementing optimistic UI updates makes the interface feel faster
+   - Maintaining responsive design across filter components ensures usability
+   - Proper error handling for filter operations prevents UI freezes
+
+These lessons help create efficient, user-friendly filtering systems while maintaining performance and adhering to Mac OS design principles.
+
+## Campaign Builder Component Improvements (March 12, 2025)
+
+### Component Organization
+1. **Separation of Concerns**
+   - Breaking down large components into focused, smaller ones improves maintainability
+   - Keeping files under 200 lines makes code more readable and testable
+   - Proper component hierarchy helps with state management
+
+2. **Import Path Management**
+   - Using relative paths from component location improves portability
+   - Centralizing constants prevents duplication and makes updates easier
+   - Proper module organization reduces circular dependencies
+
+### Error Handling
+1. **Toast Notifications**
+   - Providing immediate feedback improves user experience
+   - Consistent error message format helps users understand issues
+   - Success confirmations give users confidence in their actions
+
+2. **Loading States**
+   - Always show loading indicators for async operations
+   - Use proper error boundaries to prevent cascading failures
+   - Handle network errors gracefully with retry options
+
+### State Management
+1. **React Hooks Best Practices**
+   - useCallback improves performance for callback functions
+   - Proper dependency arrays prevent unnecessary re-renders
+   - Centralized state management simplifies data flow
+
+2. **Form Validation**
+   - Validate data before making API calls
+   - Provide clear feedback for validation errors
+   - Use consistent validation patterns across forms
+
+### Mac OS Design Integration
+1. **Visual Consistency**
+   - Following Mac OS design patterns creates familiar experience
+   - Subtle animations and transitions improve feel
+   - Consistent color scheme maintains brand identity
+
+2. **Component Styling**
+   - Use Chakra UI effectively for consistent styling
+   - Implement proper spacing and hierarchy
+   - Maintain responsive design principles
+
+### Workspace Isolation
+1. **Data Security**
+   - Always include workspace_id in operations
+   - Validate workspace access on every request
+   - Keep sensitive data out of client-side storage
+
+2. **Database Integration**
+   - Proper schema alignment ensures data integrity
+   - Two-step save process maintains consistency
+   - Proper error handling prevents data corruption
+
+These lessons help maintain code quality, improve user experience, and ensure reliable functionality while following Mac OS design principles.
+
+## Supabase Integration and API Key Configuration (March 12, 2025)
+
+### API Key Management
+1. **Correct Key Format**
+   - Client-side applications must use the anon key (JWT format starting with 'eyJ...')
+   - Personal Access Tokens (PATs starting with 'sbp_') are for administrative access only
+   - Using the wrong key format results in "Invalid API key" errors
+   - JWT tokens include project reference, role, and expiration information
+
+2. **Security Considerations**
+   - Store API keys in environment variables for production
+   - Implement proper Row Level Security (RLS) on all tables
+   - Never expose service_role keys in client-side code
+   - Regularly rotate keys in production environments
+
+### Error Handling
+1. **Defensive Programming**
+   - Always check for undefined props before making API calls
+   - Implement proper error boundaries and fallbacks
+   - Provide clear error messages to users through toast notifications
+   - Log detailed error information for debugging purposes
+
+2. **Data Validation**
+   - Validate workspace and board IDs before querying
+   - Implement proper error handling for all database operations
+   - Use loading states to improve user experience during API calls
+   - Add fallback UI for connection failures
+
+These lessons ensure reliable Supabase integration while maintaining security and providing a smooth user experience.
+
+## Supabase Integration Fixes (March 12, 2025)
+
+### Client Configuration Consistency
+1. **Single Source of Truth**
+   - Maintaining a single Supabase client configuration across the application prevents authentication issues
+   - Using the same API key in all components ensures consistent access to the database
+   - Centralizing configuration makes updates easier and prevents fragmentation
+
+2. **Environment Variables with Fallbacks**
+   - Using environment variables with fallbacks to hardcoded values provides flexibility
+   - Format: `const value = process.env.VARIABLE || 'fallback'`
+   - This approach works in both development and production environments
+
+3. **API Key Management**
+   - Using the correct anon key format (JWT token) is critical for client-side authentication
+   - The anon key should start with 'eyJ...' and is different from service_role keys or PATs
+   - PATs (starting with 'sbp_') are for administrative access, not client-side authentication
+
+4. **Error Handling**
+   - Adding proper error handling for Supabase connection issues improves debugging
+   - Implementing connection checks helps identify issues early
+   - Providing clear error messages helps users understand what went wrong
+
+### Debugging Techniques
+1. **Multiple Client Detection**
+   - Use grep to find all imports of Supabase clients across the codebase
+   - Check for inconsistent configurations between different client instances
+   - Ensure all components are using the same client configuration
+
+# Lessons Learned
+
+## March 1, 2025: Implementing Chat Popup Feature
+
+### Context
+Implemented a chat popup feature that allows users to chat with contacts directly from the contact board without navigating away from their current view.
+
+### Technical Insights
+
+#### Component Architecture
+- **Separation of Concerns**: Breaking the chat popup into smaller components (Header, ChatBubble, InputArea) made the code more maintainable and easier to debug.
+- **Conditional Rendering**: Using conditional rendering with the `isOpen` state variable improved performance by only mounting the component when needed.
+- **Props Passing**: Passing the `contactId` instead of the entire contact object allowed for better data management and reduced prop drilling.
+
+#### Real-time Communication
+- **Supabase Subscriptions**: Using Supabase's real-time subscriptions for message updates proved more efficient than polling for new messages.
+- **Message Deduplication**: Implementing proper message deduplication in the message service prevented duplicate messages from appearing in the UI.
+
+#### UI/UX Considerations
+- **Popup Positioning**: Fixed positioning with z-index management ensured the chat popup appears above other elements without disrupting the page layout.
+- **Message Bubbles**: Different styling for user vs. contact messages improved readability and provided visual context.
+- **Auto-scrolling**: Implementing auto-scroll to the latest message enhanced the user experience for ongoing conversations.
+
+### Lessons Learned
+1. **State Management**: Keep component state focused on UI concerns, while delegating data fetching and business logic to services.
+2. **Error Handling**: Robust error handling for network operations is crucial for a good user experience, especially in real-time features.
+3. **Performance Optimization**: Only render components when needed and implement proper cleanup for subscriptions to prevent memory leaks.
+4. **Integration Testing**: Testing the integration between the chat popup and existing components is essential to ensure they work together seamlessly.
+5. **Responsive Design**: Even for popup components, ensuring they work well on different screen sizes is important for a consistent user experience.
+
+## Contact Search and Display Improvements
+
+### UI Layout Best Practices
+1. When displaying contact names with timestamps:
+   - Use Chakra UI's Flex component for better control over layout
+   - Set proper flex properties to prevent text truncation
+   - Use flexShrink={0} on timestamps to maintain their width
+   - Add padding between elements to prevent overlap
+
+## Broadcast Feature UI Implementation (March 21, 2024)
+
+### Component Architecture
+1. **Modular Component Design**
+   - Breaking down complex UI interfaces into smaller, focused components improves maintainability
+   - Creating separate components for each step in the workflow improves code organization
+   - Using a manager component to orchestrate the workflow provides centralized control
+   - Maintaining file size under 200 lines makes components easier to understand and test
+
+2. **State Management**
+   - Centralizing shared state in the parent component creates a clean data flow
+   - Using local component state for UI-specific behavior reduces complexity
+   - Implementing controlled forms with proper state updates ensures data consistency
+   - Passing callback functions for state updates maintains proper data encapsulation
+
+### UI/UX Design Patterns
+1. **Multi-step Process**
+   - Clear step indicators with active/completed/disabled states improve user orientation
+   - Progressive disclosure of information reduces cognitive load
+   - Consistent button placement and behavior across steps creates familiarity
+   - Proper validation between steps prevents errors and improves user confidence
+
+2. **Styling Approach**
+   - Using styled-components with component-scoped CSS improves maintainability
+   - Consistent color schemes, spacing, and typography create visual cohesion
+   - Implementing responsive designs with media queries ensures cross-device usability
+   - Visual feedback (hover states, animations) enhances the interactive experience
+
+3. **Preview Functionality**
+   - Real-time message previews allow users to verify content before sending
+   - Device-specific previews (mobile for SMS, desktop for email) provide context
+   - Test message functionality reduces errors in production broadcasts
+   - Character counters for SMS prevent unexpected message splitting
+
+### Future Considerations
+1. **Backend Integration**
+   - API endpoints for audience selection, message sending, and tracking will be needed
+   - Database schema for storing broadcast campaigns and tracking metrics
+   - Queue service integration for scheduled messages and large broadcasts
+   - Analytics storage and processing for detailed performance metrics
+
+2. **Performance Optimizations**
+   - Lazy loading components for each step to improve initial load time
+   - Implementing virtual scrolling for large audience lists
+   - Caching preview data to reduce rendering operations
+   - Using memoization for expensive calculations in tracking metrics
+
+These lessons will guide future implementations of multi-step workflow features while maintaining Mac OS design principles and ensuring code maintainability.

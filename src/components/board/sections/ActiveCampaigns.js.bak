@@ -1,0 +1,337 @@
+import React, { useState, useEffect } from 'react';
+import {
+  Box,
+  Flex,
+  Input,
+  Button,
+  Text,
+  Badge,
+  IconButton,
+  InputGroup,
+  InputLeftElement,
+  useColorModeValue,
+  Stack,
+  useToast,
+  Spinner,
+} from '@chakra-ui/react';
+import { SearchIcon, EditIcon, CopyIcon, DeleteIcon } from '@chakra-ui/icons';
+import { supabase } from '../../../lib/supabaseClient';
+
+const CampaignCard = ({ name, status, count, onEdit, onDuplicate, onDelete }) => {
+  const bgColor = useColorModeValue('white', 'gray.800');
+  const borderColor = useColorModeValue('gray.200', 'gray.600');
+
+  return (
+    <Box
+      bg={bgColor}
+      p={4}
+      borderWidth="1px"
+      borderColor={borderColor}
+      borderRadius="lg"
+      _hover={{ borderColor: 'purple.400' }}
+      transition="all 0.2s"
+    >
+      <Flex justify="space-between" align="center">
+        <Flex align="center" gap={3}>
+          <Text fontWeight="medium">{name}</Text>
+          <Badge colorScheme="purple" variant="subtle">
+            {status || 'In Workflow'}
+          </Badge>
+        </Flex>
+        <Flex align="center" gap={4}>
+          <Text>Active: {count || 0}</Text>
+          <Flex gap={2}>
+            <IconButton
+              icon={<EditIcon />}
+              size="sm"
+              variant="ghost"
+              onClick={onEdit}
+              aria-label="Edit campaign"
+            />
+            <IconButton
+              icon={<CopyIcon />}
+              size="sm"
+              variant="ghost"
+              onClick={onDuplicate}
+              aria-label="Duplicate campaign"
+            />
+            <IconButton
+              icon={<DeleteIcon />}
+              size="sm"
+              variant="ghost"
+              onClick={onDelete}
+              aria-label="Delete campaign"
+            />
+          </Flex>
+        </Flex>
+      </Flex>
+    </Box>
+  );
+};
+
+const ActiveCampaigns = ({ workspaceId, boardId, boardTitle = '', onCreateNew }) => {
+  const [campaigns, setCampaigns] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [boardName, setBoardName] = useState('');
+  const toast = useToast();
+
+  useEffect(() => {
+    fetchCampaigns();
+    fetchPhoneNumber();
+    fetchBoardName();
+  }, [workspaceId, boardId]);
+
+  const fetchCampaigns = async () => {
+    try {
+      setLoading(true);
+      
+      // Check if workspaceId and boardId are defined
+      if (!workspaceId || !boardId) {
+        console.error('workspaceId or boardId is undefined');
+        toast({
+          title: 'Error fetching campaigns',
+          description: 'Missing workspace or board information',
+          status: 'error',
+          duration: 5000,
+          isClosable: true,
+        });
+        setLoading(false);
+        return;
+      }
+      
+      // Fetch campaigns from Supabase
+      const { data, error } = await supabase
+        .from('campaigns')
+        .select(`
+          id, 
+          name, 
+          status,
+          campaign_nodes(count)
+        `)
+        .eq('workspace_id', workspaceId)
+        .eq('board_id', boardId);
+      
+      if (error) {
+        throw error;
+      }
+      
+      // Transform the data to include active count
+      const transformedData = data.map(campaign => ({
+        id: campaign.id,
+        name: campaign.name,
+        status: campaign.status || 'In Workflow',
+        count: campaign.campaign_nodes?.length || 0
+      }));
+      
+      setCampaigns(transformedData);
+    } catch (error) {
+      console.error('Error fetching campaigns:', error);
+      toast({
+        title: 'Error fetching campaigns',
+        description: error.message,
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const fetchPhoneNumber = async () => {
+    try {
+      // Fetch phone number from Supabase
+      const { data, error } = await supabase
+        .from('board_settings')
+        .select('phone_number')
+        .eq('workspace_id', workspaceId)
+        .eq('board_id', boardId)
+        .single();
+      
+      if (error) {
+        throw error;
+      }
+      
+      setPhoneNumber(data?.phone_number || '');
+    } catch (error) {
+      console.error('Error fetching phone number:', error);
+      // Don't show toast for this error as it's not critical
+    }
+  };
+
+  const fetchBoardName = async () => {
+    try {
+      // Fetch board name from Supabase
+      const { data, error } = await supabase
+        .from('boards')
+        .select('name')
+        .eq('id', boardId)
+        .eq('workspace_id', workspaceId)
+        .single();
+      
+      if (error) {
+        throw error;
+      }
+      
+      setBoardName(data?.name || boardTitle || '');
+    } catch (error) {
+      console.error('Error fetching board name:', error);
+      // Fallback to provided boardTitle if available
+      setBoardName(boardTitle || '');
+    }
+  };
+
+  const handleEdit = (campaignId) => {
+    // Navigate to edit campaign page or open edit modal
+    console.log('Edit', campaignId);
+  };
+
+  const handleDuplicate = async (campaignId) => {
+    try {
+      // Find the campaign to duplicate
+      const campaignToDuplicate = campaigns.find(c => c.id === campaignId);
+      
+      if (!campaignToDuplicate) return;
+      
+      // Create a new campaign with the same data
+      const { data, error } = await supabase
+        .from('campaigns')
+        .insert({
+          name: `${campaignToDuplicate.name} (Copy)`,
+          workspace_id: workspaceId,
+          board_id: boardId,
+          status: campaignToDuplicate.status
+        })
+        .select();
+      
+      if (error) {
+        throw error;
+      }
+      
+      toast({
+        title: 'Campaign duplicated',
+        description: 'The campaign has been duplicated successfully',
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
+      });
+      
+      // Refresh campaigns
+      fetchCampaigns();
+    } catch (error) {
+      console.error('Error duplicating campaign:', error);
+      toast({
+        title: 'Error duplicating campaign',
+        description: error.message,
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      });
+    }
+  };
+
+  const handleDelete = async (campaignId) => {
+    try {
+      // Delete campaign from Supabase
+      const { error } = await supabase
+        .from('campaigns')
+        .delete()
+        .eq('id', campaignId)
+        .eq('workspace_id', workspaceId); // Security check
+      
+      if (error) {
+        throw error;
+      }
+      
+      toast({
+        title: 'Campaign deleted',
+        description: 'The campaign has been deleted successfully',
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
+      });
+      
+      // Update local state
+      setCampaigns(campaigns.filter(c => c.id !== campaignId));
+    } catch (error) {
+      console.error('Error deleting campaign:', error);
+      toast({
+        title: 'Error deleting campaign',
+        description: error.message,
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      });
+    }
+  };
+
+  // Filter campaigns based on search term
+  const filteredCampaigns = campaigns.filter(campaign => 
+    campaign.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  return (
+    <Box p={4}>
+      <Flex justify="space-between" align="center" mb={6}>
+        <Text fontSize="xl" fontWeight="semibold">
+          Campaigns{boardName ? ` - ${boardName}` : ''}
+        </Text>
+        <Flex gap={4}>
+          <InputGroup maxW="300px">
+            <InputLeftElement pointerEvents="none">
+              <SearchIcon color="gray.400" />
+            </InputLeftElement>
+            <Input 
+              placeholder="Search Campaigns" 
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+          </InputGroup>
+          <Button
+            colorScheme="purple"
+            onClick={onCreateNew}
+            size="md"
+            minW="140px"
+            fontWeight="medium"
+          >
+            Create Campaign
+          </Button>
+        </Flex>
+      </Flex>
+
+      {phoneNumber && (
+        <Text color="gray.600" mb={2}>
+          Phone Number: {phoneNumber}
+        </Text>
+      )}
+
+      {loading ? (
+        <Flex justify="center" align="center" h="200px">
+          <Spinner size="lg" color="purple.500" />
+        </Flex>
+      ) : filteredCampaigns.length > 0 ? (
+        <Stack spacing={3}>
+          {filteredCampaigns.map((campaign) => (
+            <CampaignCard
+              key={campaign.id}
+              name={campaign.name}
+              status={campaign.status}
+              count={campaign.count}
+              onEdit={() => handleEdit(campaign.id)}
+              onDuplicate={() => handleDuplicate(campaign.id)}
+              onDelete={() => handleDelete(campaign.id)}
+            />
+          ))}
+        </Stack>
+      ) : (
+        <Box textAlign="center" py={10}>
+          <Text color="gray.500">No campaigns found. Create your first campaign!</Text>
+        </Box>
+      )}
+    </Box>
+  );
+};
+
+export default ActiveCampaigns;
