@@ -21,8 +21,9 @@ export default defineConfig(({ mode }) => ({
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
+    extensions: ['.mjs', '.js', '.jsx', '.ts', '.tsx', '.json'] // Add this line to prioritize jsx extensions
   },
-  // Enable importing .js files with JSX
+  // Enhanced esbuild configuration for JSX in .js files
   esbuild: {
     loader: "jsx",
     include: /src\/.*\.jsx?$/,
