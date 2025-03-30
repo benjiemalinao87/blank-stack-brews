@@ -1,17 +1,16 @@
 
 import React from 'react';
-import { Box, Container, Heading, Text, VStack } from '@chakra-ui/react';
 
 const Index = () => {
   return (
-    <Box as="main" minH="100vh" display="flex" alignItems="center" justifyContent="center">
-      <Container maxW="container.md">
-        <VStack spacing={6} textAlign="center">
-          <Heading as="h1" size="2xl">Welcome to your React ES Module App</Heading>
-          <Text fontSize="xl">A minimal React application using ES modules and Chakra UI</Text>
-        </VStack>
-      </Container>
-    </Box>
+    <main className="min-h-screen flex items-center justify-center">
+      <div className="container mx-auto px-4">
+        <div className="flex flex-col items-center text-center space-y-6">
+          <h1 className="text-4xl font-bold">Welcome to your React ES Module App</h1>
+          <p className="text-xl text-gray-600">A minimal React application using ES modules and Tailwind CSS</p>
+        </div>
+      </div>
+    </main>
   );
 };
 

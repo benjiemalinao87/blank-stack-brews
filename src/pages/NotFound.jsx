@@ -1,8 +1,6 @@
 
-import React from 'react';
-import { Box, Button, Container, Heading, Text, VStack } from '@chakra-ui/react';
+import React, { useEffect } from 'react';
 import { useLocation, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 
 const NotFound = () => {
   const location = useLocation();
@@ -16,17 +14,20 @@ const NotFound = () => {
   }, [location.pathname]);
 
   return (
-    <Box as="main" minH="100vh" display="flex" alignItems="center" justifyContent="center">
-      <Container maxW="container.md">
-        <VStack spacing={6} textAlign="center">
-          <Heading as="h1" size="2xl">404</Heading>
-          <Text fontSize="xl">Oops! Page not found</Text>
-          <Button colorScheme="blue" onClick={() => navigate("/")}>
+    <main className="min-h-screen flex items-center justify-center">
+      <div className="container mx-auto px-4">
+        <div className="flex flex-col items-center text-center space-y-6">
+          <h1 className="text-4xl font-bold">404</h1>
+          <p className="text-xl text-gray-600">Oops! Page not found</p>
+          <button 
+            className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+            onClick={() => navigate("/")}
+          >
             Return to Home
-          </Button>
-        </VStack>
-      </Container>
-    </Box>
+          </button>
+        </div>
+      </div>
+    </main>
   );
 };
 
