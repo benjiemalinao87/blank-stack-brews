@@ -1,3 +1,4 @@
+
 // This file is maintained for backward compatibility
 // All Supabase client functionality is now in lib/supabaseUnified.js
 // This file simply re-exports everything from there
