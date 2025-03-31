@@ -1,16 +1,13 @@
+
 import { createClient } from '@supabase/supabase-js';
 import logger from '../utils/logger';
 
-// Initialize Supabase client
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-const supabaseKey = import.meta.env.VITE_SUPABASE_KEY;
+// Initialize Supabase client with fallback values for development
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 'https://ycwttshvizkotcwwyjpt.supabase.co';
+const supabaseKey = import.meta.env.VITE_SUPABASE_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inljd3R0c2h2aXprb3Rjd3d5anB0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzgyNDQ5NzUsImV4cCI6MjA1MzgyMDk3NX0.fVZR9xA1CkuExYKBrKbjGW9Z_nLIYS0mS1gFjfPJEAk';
 
 console.log('Supabase URL:', supabaseUrl);
 console.log('Supabase Key length:', supabaseKey?.length);
-
-if (!supabaseUrl || !supabaseKey) {
-  throw new Error('Missing Supabase environment variables');
-}
 
 export const supabase = createClient(supabaseUrl, supabaseKey, {
   auth: {

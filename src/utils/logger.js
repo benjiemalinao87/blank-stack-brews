@@ -1,31 +1,18 @@
-/**
- * Simple logger utility with different log levels
- */
-
-// Logger utility for conditional logging
-const isDev = process.env.NODE_ENV === 'development';
 
 const logger = {
-  debug: (...args) => {
-    if (isDev) {
-      console.log(...args);
+  debug: (message, ...args) => {
+    if (process.env.NODE_ENV !== 'production') {
+      console.debug(`[DEBUG] ${message}`, ...args);
     }
   },
-  error: (...args) => {
-    if (isDev) {
-      console.error(...args);
-    }
+  info: (message, ...args) => {
+    console.log(`[INFO] ${message}`, ...args);
   },
-  warn: (...args) => {
-    if (isDev) {
-      console.warn(...args);
-    }
+  warn: (message, ...args) => {
+    console.warn(`[WARN] ${message}`, ...args);
   },
-  log: (...args) => {
-    console.log('[INFO]', ...args);
-  },
-  info: (...args) => {
-    console.info('[INFO]', ...args);
+  error: (message, ...args) => {
+    console.error(`[ERROR] ${message}`, ...args);
   }
 };
 
