@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { ChakraProvider } from '@chakra-ui/react';
+import { ChakraProvider, ColorModeScript } from '@chakra-ui/react';
 import { AuthProvider } from './contexts/AuthContext.jsx';
 import { WorkspaceProvider } from './contexts/WorkspaceContext.jsx';
 import { DockProvider } from './contexts/DockContext.jsx';
@@ -17,6 +17,7 @@ const App = () => {
   return (
     <Router>
       <ChakraProvider theme={theme}>
+        <ColorModeScript initialColorMode={theme.config.initialColorMode} />
         <AuthProvider>
           <WorkspaceProvider>
             <DockProvider>

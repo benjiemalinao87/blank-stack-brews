@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Box, Progress, useToast, Center, Spinner, Button, VStack, Text } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
@@ -336,3 +337,5 @@ export const OnboardingFlow = () => {
     </Box>
   );
 };
+
+export default OnboardingFlow;
